@@ -444,7 +444,7 @@ document.querySelectorAll("form").forEach((f,i)=>{
 f.querySelectorAll("[id]").forEach(el=>{const o=el.id;el.id=o+i;const l=f.querySelector('label[for="'+o+'"]');if(l)l.htmlFor=el.id});
 f.onsubmit=async e=>{e.preventDefault();const ok=f.querySelector(".ok"),fd=new FormData(f);let sent=false;
 try{const r=await fetch(f.action,{method:"POST",body:fd,headers:{Accept:"application/json"}});sent=r.ok}catch(_){}
-if(sent){ok.textContent="Заявка отправлена. Ответим в течение дня.";f.reset()}
+if(sent){ok.textContent="Заявка отправлена. Ответим в течение дня.";f.reset();if(window.ym)ym(113763583,'reachGoal','form_submit');if(window._tmr){_tmr.push({id:"3808333",type:"reachGoal",goal:"form_submit"});_tmr.push({id:"3809098",type:"reachGoal",goal:"form_submit"});}}
 else{const b="Имя: "+fd.get("name")+"\nТелефон или мессенджер: "+fd.get("contact")+"\nКакую позицию нужно закрыть: "+fd.get("position");
 ok.textContent="Откроется письмо с вашей заявкой. Нажмите «Отправить» в почтовой программе. Если письмо не открылось, напишите на anastasia.work.hr@gmail.com.";
 location.href="mailto:anastasia.work.hr@gmail.com?subject="+encodeURIComponent("Заявка с сайта: начать подбор")+"&body="+encodeURIComponent(b)}
@@ -501,7 +501,7 @@ route();
     e.preventDefault();
     var btn=form.querySelector('button'); btn.disabled=true; btn.textContent='Отправляем...';
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}})
-      .then(function(r){ if(!r.ok) throw new Error(); form.style.display='none'; ok.style.display='block'; })
+      .then(function(r){ if(!r.ok) throw new Error(); form.style.display='none'; ok.style.display='block';if(window.ym)ym(113763583,'reachGoal','form_submit');if(window._tmr){_tmr.push({id:"3808333",type:"reachGoal",goal:"form_submit"});_tmr.push({id:"3809098",type:"reachGoal",goal:"form_submit"});} })
       .catch(function(){ btn.disabled=false; btn.textContent='Записаться на диагностику'; alert('Не удалось отправить. Напишите нам в Telegram или на почту.'); });
   });
 })();
